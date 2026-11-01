@@ -25,6 +25,8 @@ input,textarea{width:100%;border:1px solid var(--bd);background:var(--card);colo
 .warn{font-size:12px;color:var(--mu);margin-top:16px;border-top:1px solid var(--bd);padding-top:8px}
 a{color:var(--ac)}img.u{max-width:48%;border-radius:8px;margin:4px 4px 0 0}
 ul{margin:4px 0;padding-left:20px}
+
+.med-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}.med-item{padding:10px;border:1px solid var(--bd);border-radius:8px;overflow-wrap:anywhere}.med-item h3{text-transform:none;letter-spacing:0}.med-item p{margin:6px 0}.med-check{display:flex;gap:8px;align-items:center;margin:12px 0}.med-check input{width:auto;margin:0}select{display:block;width:100%;padding:10px;border:1px solid var(--bd);border-radius:10px;background:var(--card);color:var(--tx);font:inherit;margin:4px 0}summary{cursor:pointer;font-weight:600}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
 </style></head><body><div class="w">
 <h1>Skin Conditions Assistant</h1>
 <p class="sub">Based on Harrison’s Ch. 57 (Eczema, Psoriasis, Cutaneous Infections, Acne). Type one word, e.g. “itch”, “scaly”, “blister”.</p>
@@ -99,5 +101,1432 @@ d.querySelectorAll("div").forEach(function(e){e.onclick=function(){st.q=e.textCo
 var kq=document.getElementById("kq");if(kq)kq.oninput=function(){st.kq=kq.value;document.getElementById("kl").innerHTML=kbl();document.querySelectorAll(".card.c").forEach(function(e){e.onclick=function(){st.sel=+e.dataset.i;draw()}})};
 document.querySelectorAll("input[type=file]").forEach(function(f){f.onchange=function(){var file=f.files[0];if(!file)return;var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var s=Math.min(1,500/im.width),cv=document.createElement("canvas");cv.width=im.width*s;cv.height=im.height*s;cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);var n=all()[+f.dataset.n].n;(IM[n]=IM[n]||[]).push(cv.toDataURL("image/jpeg",.7));sv("sk_im",IM);draw()};im.src=r.result};r.readAsDataURL(file)}});
 var as=document.getElementById("as");if(as)as.onclick=function(){var g=function(i){return document.getElementById(i).value.trim()};if(!g("an"))return;CU.push({n:g("an"),k:g("ak"),loc:g("al"),ft:g("af"),d:g("ad")||"—",dx:g("ax")||"—",t:g("at")||"—",tx:g("ar")||"—",f:"",cu:1});sv("sk_cu",CU);draw()}}
+
+var MEDICINES=[
+  {
+    "id": "emollient",
+    "title": "Emollients and barrier care",
+    "generic": "Moisturisers / humectants",
+    "source": "https://www.1mg.com/categories/personal-care/bath-body-care/moisturizers-lotions-781",
+    "rows": [
+      {
+        "brand": "Emolene",
+        "company": "Abbott Healthcare",
+        "price": "₹390.50 · listed pack price",
+        "form": "Propylene glycol cream, 100 g",
+        "source": "https://www.apollopharmacy.in/DERMATOLOGY/EMOLLIENT-productType"
+      },
+      {
+        "brand": "Moisturex",
+        "company": "Sun Pharmaceutical Industries (marketer)",
+        "price": "₹300 · listed pack price",
+        "form": "Urea / lactic acid emollient cream, 100 g",
+        "source": "https://www.apollopharmacy.in/DERMATOLOGY/EMOLLIENT-productType"
+      },
+      {
+        "brand": "Moisturex Soft",
+        "company": "Alaina Healthcare (manufacturer); Sun Pharmaceutical Industries (marketer)",
+        "price": "₹768.50 MRP",
+        "form": "White soft paraffin + light liquid paraffin cream, 300 g",
+        "source": "https://www.apollopharmacy.in/otc/venusia-max-lotion-300ml"
+      },
+      {
+        "brand": "Cetaphil Moisturising Cream",
+        "company": "Galderma India",
+        "price": "₹899 MRP",
+        "form": "Moisturising cream, 100 g",
+        "source": "https://www.1mg.com/categories/personal-care/bath-body-care/moisturizers-lotions-781"
+      },
+      {
+        "brand": "Venusia Max",
+        "company": "Dr Reddy’s Laboratories",
+        "price": "₹739 MRP",
+        "form": "Intensive moisturising cream, 150 g",
+        "source": "https://www.apollopharmacy.in/shop-by-brand/venusia"
+      }
+    ],
+    "note": "Products differ in ingredients. Urea / lactic acid may sting inflamed or broken skin; choose a suitable bland emollient. Supplemental prices: Apollo emollient and Venusia listings.",
+    "combo": false
+  },
+  {
+    "id": "steroid",
+    "title": "Topical corticosteroids — select potency",
+    "generic": "Desonide / fluticasone / mometasone / clobetasol",
+    "source": "https://www.apollopharmacy.in/shop-by-category/cream-for-eczema-p",
+    "rows": [
+      {
+        "brand": "Desowen",
+        "company": "Galderma India",
+        "price": "₹266 · listed pack price",
+        "form": "Desonide 0.05% cream, 10 g"
+      },
+      {
+        "brand": "Flutivate",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹370 · listed pack price",
+        "form": "Fluticasone propionate 0.05% cream, 20 g"
+      },
+      {
+        "brand": "Momate",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹330 · listed pack price",
+        "form": "Mometasone furoate 0.1% cream, 20 g"
+      },
+      {
+        "brand": "Elocon",
+        "company": "Fulford India",
+        "price": "₹602 · listed pack price",
+        "form": "Mometasone furoate 0.1% cream, 30 g"
+      },
+      {
+        "brand": "Tenovate",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹177 · listed pack price",
+        "form": "Clobetasol propionate 0.05% cream, 30 g"
+      }
+    ],
+    "note": "Different potencies are not interchangeable. Avoid potent steroids on face/folds and avoid steroids for undiagnosed fungal rashes.",
+    "combo": false
+  },
+  {
+    "id": "calcineurin",
+    "title": "Topical calcineurin inhibitors",
+    "generic": "Tacrolimus / pimecrolimus",
+    "source": "https://www.1mg.com/drugs-therapeutic-classes/drug-class-296",
+    "rows": [
+      {
+        "brand": "Tacroz",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹351.56 · listed pack price",
+        "form": "Tacrolimus 0.03% ointment, 20 g"
+      },
+      {
+        "brand": "Tacroz Forte",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹853.13 · listed pack price",
+        "form": "Tacrolimus 0.1% ointment, 20 g"
+      },
+      {
+        "brand": "Tacroz Forte XL",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹1026.56 · listed pack price",
+        "form": "Tacrolimus 0.1% ointment, 40 g"
+      },
+      {
+        "brand": "Tacroderm 0.1",
+        "company": "Abbott",
+        "price": "₹384.71 · listed pack price",
+        "form": "Tacrolimus 0.1% ointment, 10 g"
+      },
+      {
+        "brand": "Picon",
+        "company": "Eris Lifesciences",
+        "price": "₹1816.13 MRP",
+        "form": "Pimecrolimus 1% cream, 30 g"
+      }
+    ],
+    "note": "Five product options across this class, including different strengths/packs. Use age-appropriate product labelling; these are topical products, not transplant capsules.",
+    "combo": false
+  },
+  {
+    "id": "antihistamine",
+    "title": "Oral H1 antihistamines",
+    "generic": "Cetirizine",
+    "source": "https://www.1mg.com/generics/cetirizine-209553",
+    "rows": [
+      {
+        "brand": "Alerid",
+        "company": "Cipla",
+        "price": "₹20–42 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cetzine",
+        "company": "Dr Reddy’s Laboratories",
+        "price": "₹30–101 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "CZ 3",
+        "company": "Lupin",
+        "price": "₹20–42 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cetiriz",
+        "company": "Alkem Laboratories",
+        "price": "₹16–41 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Zyrtec",
+        "company": "Dr Reddy’s Laboratories",
+        "price": "₹15–111 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Adjunctive symptom relief. Antihistamines do not replace anti-inflammatory eczema treatment; consider sedation and renal function.",
+    "combo": false
+  },
+  {
+    "id": "cefalexin",
+    "title": "Oral cephalosporin antibiotics",
+    "generic": "Cefalexin / cephalexin",
+    "source": "https://www.1mg.com/generics/cefalexin-212987",
+    "rows": [
+      {
+        "brand": "Sporidex",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹60–463 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Phexin",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹58–438 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ceff",
+        "company": "Lupin",
+        "price": "₹64–320 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cephalkem",
+        "company": "Alkem Laboratories",
+        "price": "₹23–186 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cephadex",
+        "company": "Cipla",
+        "price": "₹28–197 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "For an appropriate susceptible bacterial infection; not routine treatment of uninfected eczema or MRSA.",
+    "combo": false
+  },
+  {
+    "id": "mupirocin",
+    "title": "Topical antibacterial agents",
+    "generic": "Mupirocin",
+    "source": "https://www.1mg.com/generics/mupirocin-210313",
+    "rows": [
+      {
+        "brand": "T-Bact",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹108–325 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Mupimet",
+        "company": "Fourrts India Laboratories",
+        "price": "₹107–318 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Mupi",
+        "company": "Hegde and Hegde Pharmaceutica",
+        "price": "₹108–268 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Supirocin",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹92–239 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Mupinase",
+        "company": "Cipla",
+        "price": "₹108–162 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Select the correct cutaneous formulation. Intranasal use requires an appropriate nasal formulation and a clinician-directed decolonisation plan.",
+    "combo": false
+  },
+  {
+    "id": "doxy",
+    "title": "Oral tetracycline antibiotics",
+    "generic": "Doxycycline",
+    "source": "https://www.1mg.com/generics/doxycycline-209774",
+    "rows": [
+      {
+        "brand": "Minicycline",
+        "company": "Shreya Life Sciences",
+        "price": "₹32–32 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Doxific",
+        "company": "Gufic Bioscience",
+        "price": "₹538–538 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Lenteclin",
+        "company": "Aristo Pharmaceuticals",
+        "price": "₹11–536 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Doxyleb",
+        "company": "Leben Laboratories",
+        "price": "₹17–17 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Doxid",
+        "company": "Drakt Pharmaceutical",
+        "price": "₹42–42 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Acne / selected bacterial infections. Product name does not establish ingredient: Minicycline here is listed under doxycycline. Avoid with isotretinoin; consider pregnancy and age restrictions.",
+    "combo": false
+  },
+  {
+    "id": "mino",
+    "title": "Oral tetracycline alternatives",
+    "generic": "Minocycline",
+    "source": "https://www.1mg.com/generics/minocycline-210287",
+    "rows": [
+      {
+        "brand": "Minoz",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹267–538 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cynomycin",
+        "company": "Pfizer",
+        "price": "₹287–656 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Divaine",
+        "company": "Cipla",
+        "price": "₹301–3736 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Minolox",
+        "company": "Micro Labs",
+        "price": "₹285–472 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Minonil",
+        "company": "Ajanta Pharma",
+        "price": "₹256–433 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Check formulation and dose. Limit antibiotic exposure for acne and use concurrent benzoyl peroxide; do not combine with isotretinoin.",
+    "combo": false
+  },
+  {
+    "id": "doxycombo",
+    "title": "Antibiotic + probiotic combinations",
+    "generic": "Doxycycline + Lactobacillus",
+    "source": "https://www.1mg.com/generics/doxycycline-lactobacillus-401476",
+    "rows": [
+      {
+        "brand": "Doxy-1 L-Dr Forte",
+        "company": "USV",
+        "price": "₹113–124 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Doxt-SL",
+        "company": "Dr Reddy’s Laboratories",
+        "price": "₹43–226 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Microdox-LBX",
+        "company": "Micro Labs",
+        "price": "₹97–97 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Doxypal DR-L",
+        "company": "Jagsonpal Pharmaceuticals",
+        "price": "₹121–121 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Doxybond-LB",
+        "company": "Brinton Pharmaceuticals",
+        "price": "₹133–133 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Marketed combinations; probiotic inclusion does not establish better acne outcomes. Antibiotic stewardship remains necessary.",
+    "combo": true
+  },
+  {
+    "id": "cotrim",
+    "title": "Combination antibacterial agents",
+    "generic": "Sulfamethoxazole + trimethoprim",
+    "source": "https://www.1mg.com/generics/sulfamethoxazole-trimethoprim-403081",
+    "rows": [
+      {
+        "brand": "Septran",
+        "company": "RV Lifesciences",
+        "price": "₹2–37 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Sepmax",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹13–13 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Bactrim",
+        "company": "Abbott",
+        "price": "₹18–24 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Oriprim",
+        "company": "Zydus Cadila",
+        "price": "₹12–24 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Larprim",
+        "company": "Lark Laboratories",
+        "price": "₹13–13 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Selected susceptible infections including some MRSA. Verify strength, renal function, potassium, allergy and interactions; not adequate streptococcal coverage in every setting.",
+    "combo": true
+  },
+  {
+    "id": "clinda",
+    "title": "Lincosamide antibiotics",
+    "generic": "Clindamycin",
+    "source": "https://www.1mg.com/generics/clindamycin-209621",
+    "rows": [
+      {
+        "brand": "Erytop",
+        "company": "USV",
+        "price": "₹159–605 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Clincin",
+        "company": "Indi Pharma",
+        "price": "₹110–297 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Dalcinex",
+        "company": "Cipla",
+        "price": "₹129–258 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Clindac A",
+        "company": "Alkem Laboratories",
+        "price": "₹252–530 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Camyda",
+        "company": "Wallace Pharmaceuticals",
+        "price": "₹90–302 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Brand families include different routes; topical acne gels and systemic products cannot be substituted. For acne use benzoyl peroxide with antibiotics; systemic use carries C. difficile risk.",
+    "combo": false
+  },
+  {
+    "id": "antifungaltop",
+    "title": "Topical azole antifungals",
+    "generic": "Clotrimazole / luliconazole / sertaconazole / ketoconazole",
+    "source": "https://www.apollopharmacy.in/shop-by-category/cream-for-fungal-infection-p",
+    "rows": [
+      {
+        "brand": "Candid",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹96 · listed pack price",
+        "form": "Clotrimazole 1% cream, 30 g"
+      },
+      {
+        "brand": "Canesten",
+        "company": "Bayer Pharmaceuticals",
+        "price": "₹94 · listed pack price",
+        "form": "Clotrimazole 1% cream, 30 g"
+      },
+      {
+        "brand": "Lulifin",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹316.50 · listed pack price",
+        "form": "Luliconazole 1% cream, 30 g"
+      },
+      {
+        "brand": "Onabet",
+        "company": "Eris Lifesciences",
+        "price": "₹453.50 · listed pack price",
+        "form": "Sertaconazole 2% cream, 30 g"
+      },
+      {
+        "brand": "KZ",
+        "company": "Hegde and Hegde Pharmaceutica",
+        "price": "₹229.50 · listed pack price",
+        "form": "Ketoconazole 2% cream, 30 g"
+      }
+    ],
+    "note": "Choose the molecule and frequency appropriate to the infection. Avoid steroid-antifungal combinations for tinea. Marketer may change; check current pack.",
+    "combo": false
+  },
+  {
+    "id": "terb",
+    "title": "Allylamine antifungals",
+    "generic": "Terbinafine",
+    "source": "https://www.1mg.com/generics/terbinafine-210787",
+    "rows": [
+      {
+        "brand": "Terbinaforce",
+        "company": "Mankind Pharma",
+        "price": "₹56–204 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Sebifin",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹148–582 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Tyza",
+        "company": "Abbott",
+        "price": "₹83–281 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Terbest",
+        "company": "Systopic Laboratories",
+        "price": "₹67–165 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ifin",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹42–225 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Brand ranges may include topical and oral products. Confirm route; oral use requires interaction and liver-risk assessment.",
+    "combo": false
+  },
+  {
+    "id": "itra",
+    "title": "Systemic triazole antifungals — itraconazole",
+    "generic": "Itraconazole",
+    "source": "https://www.1mg.com/generics/itraconazole-210071",
+    "rows": [
+      {
+        "brand": "Canditral",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹131–768 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Syntran",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹149–842 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Itrasys",
+        "company": "Systopic Laboratories",
+        "price": "₹43–269 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ceastra",
+        "company": "Emcutix Biopharmaceuticals",
+        "price": "₹54–262 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Onitraz",
+        "company": "KLM Laboratories",
+        "price": "₹140–232 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Select oral formulation and strength deliberately; formulations are not automatically bioequivalent. Avoid in heart failure; assess interactions and hepatic risk. Source ranges may include non-oral variants.",
+    "combo": false
+  },
+  {
+    "id": "fluco",
+    "title": "Systemic triazole antifungals — fluconazole",
+    "generic": "Fluconazole",
+    "source": "https://www.1mg.com/generics/fluconazole-209890",
+    "rows": [
+      {
+        "brand": "AF",
+        "company": "Systopic Laboratories",
+        "price": "₹12–27 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Forcan",
+        "company": "Cipla",
+        "price": "₹12–105 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Fusys",
+        "company": "Zydus Healthcare",
+        "price": "₹12–77 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Onecan",
+        "company": "Wallace Pharmaceuticals",
+        "price": "₹10–192 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Syscan",
+        "company": "Torrent Pharmaceuticals",
+        "price": "₹20–171 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Doses and duration depend on site and organism. Check renal function, pregnancy, QT risk and drug interactions.",
+    "combo": false
+  },
+  {
+    "id": "griseo",
+    "title": "Other oral dermatophyte antifungals",
+    "generic": "Griseofulvin",
+    "source": "https://www.1mg.com/generics/griseofulvin-209972",
+    "rows": [
+      {
+        "brand": "Grisovin-FP",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹18–38 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ecovin",
+        "company": "Brinton Pharmaceuticals",
+        "price": "₹188–241 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ulvin",
+        "company": "Seagull Pharmaceutical",
+        "price": "₹135–135 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Fulvinem",
+        "company": "Medopharm",
+        "price": "₹32–32 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Griseomore",
+        "company": "Base Pharmaceuticals",
+        "price": "₹100–100 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Selected tinea capitis regimens; weight and formulation matter. Ineffective for candidiasis.",
+    "combo": false
+  },
+  {
+    "id": "ciclo",
+    "title": "Hydroxypyridone topical antifungals",
+    "generic": "Ciclopirox",
+    "source": "https://www.1mg.com/generics/ciclopirox-209595",
+    "rows": [
+      {
+        "brand": "Stieprox",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹226–226 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Nailrox",
+        "company": "Intas Pharmaceuticals",
+        "price": "₹159–314 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Triogel",
+        "company": "Cipla",
+        "price": "₹90–90 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cipinor",
+        "company": "Elliot Biotech",
+        "price": "₹170–170 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ciclozil",
+        "company": "Medencia Lifesciences",
+        "price": "₹73–73 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Shampoo, cream and nail-lacquer products have different indications; verify the formulation before prescribing.",
+    "combo": false
+  },
+  {
+    "id": "shampoo",
+    "title": "Antidandruff combination preparations",
+    "generic": "Ketoconazole + zinc pyrithione",
+    "source": "https://www.1mg.com/generics/ketoconazole-zinc-pyrithione-402007",
+    "rows": [
+      {
+        "brand": "KZ",
+        "company": "Hegde and Hegde Pharmaceutica",
+        "price": "₹125–374 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Danclear",
+        "company": "Zydus Healthcare",
+        "price": "₹294–451 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Kenz",
+        "company": "KLM Laboratories",
+        "price": "₹64–345 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "AF-K",
+        "company": "Systopic Laboratories",
+        "price": "₹155–228 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Hyphoral",
+        "company": "Ipca Laboratories",
+        "price": "₹135–435 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Check the full product suffix and ingredients: KZ plain cream and KZ combination shampoo are different products.",
+    "combo": true
+  },
+  {
+    "id": "vitd",
+    "title": "Topical vitamin D analogues",
+    "generic": "Calcipotriol (calcipotriene)",
+    "source": "https://www.1mg.com/generics/calcipotriol-209488",
+    "rows": [
+      {
+        "brand": "Pasitrex",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹344–436 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Sorifix Solo",
+        "company": "La Pristine Bioceuticals",
+        "price": "₹388–388 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Heximar",
+        "company": "A. Menarini India",
+        "price": "₹604–604 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Sorfil",
+        "company": "Fourrts India Laboratories",
+        "price": "₹1057–1057 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Calpsor",
+        "company": "Eris Lifesciences",
+        "price": "₹196–710 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Plaque psoriasis: respect surface-area and weekly quantity limits; avoid unsupervised use on face and folds.",
+    "combo": false
+  },
+  {
+    "id": "psorcombo",
+    "title": "Vitamin D analogue + steroid combinations",
+    "generic": "Calcipotriol + clobetasol",
+    "source": "https://www.1mg.com/generics/calcipotriol-clobetasol-400649",
+    "rows": [
+      {
+        "brand": "Calpsor C",
+        "company": "Eris Oaknet Healthcare",
+        "price": "₹361–772 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Pasitrex C",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹528–528 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Sorifix",
+        "company": "La Pristine Bioceuticals",
+        "price": "₹388–772 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Calcib C",
+        "company": "Bio Swizz Pharmaceuticals",
+        "price": "₹491–491 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Soritrol C",
+        "company": "Briskinn Solutions",
+        "price": "₹311–311 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Contains a very potent steroid: short, supervised plaque-psoriasis treatment; not an antifungal product.",
+    "combo": true
+  },
+  {
+    "id": "metho",
+    "title": "Systemic antimetabolites for psoriasis",
+    "generic": "Methotrexate",
+    "source": "https://www.1mg.com/generics/methotrexate-210251",
+    "rows": [
+      {
+        "brand": "Folitrax",
+        "company": "Ipca Laboratories",
+        "price": "₹28–566 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Mext",
+        "company": "Wallace Pharmaceuticals",
+        "price": "₹33–492 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Biotrexate",
+        "company": "Biochem Pharmaceutical Industries",
+        "price": "₹49–1030 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Oncotrex",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹42–162 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Imutrex",
+        "company": "Cipla",
+        "price": "₹47–121 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Psoriasis dosing is ONCE WEEKLY, never daily. Specialist prescription, folate plan, CBC, renal/liver monitoring and pregnancy precautions. Source ranges include multiple strengths/routes.",
+    "combo": false
+  },
+  {
+    "id": "acit",
+    "title": "Systemic retinoids for psoriasis",
+    "generic": "Acitretin",
+    "source": "https://www.1mg.com/generics/acitretin-209322",
+    "rows": [
+      {
+        "brand": "Acrotac",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹384–1471 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Actoid",
+        "company": "Intas Pharmaceuticals",
+        "price": "₹365–650 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Aceret",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹668–668 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Acipsor",
+        "company": "Kivi Labs",
+        "price": "₹272–664 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Glacitret",
+        "company": "Glasier Wellness",
+        "price": "₹262–464 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Highly teratogenic: specialist pregnancy-prevention protocol and lipid/liver monitoring required.",
+    "combo": false
+  },
+  {
+    "id": "aprem",
+    "title": "PDE4 inhibitors",
+    "generic": "Apremilast",
+    "source": "https://www.1mg.com/generics/apremilast-405231",
+    "rows": [
+      {
+        "brand": "Aprezo",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹110–346 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Aplex",
+        "company": "Ajanta Pharma",
+        "price": "₹182–185 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Alizap",
+        "company": "Eris Lifesciences",
+        "price": "₹311–311 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Apremist",
+        "company": "Corona Remedies",
+        "price": "₹193–193 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Avplex",
+        "company": "Monark Biocare",
+        "price": "₹65–65 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Specialist use; titration and renal dose adjustment may be needed. Review weight loss, mood and tolerability.",
+    "combo": false
+  },
+  {
+    "id": "cyclosporin",
+    "title": "Systemic calcineurin inhibitors",
+    "generic": "Ciclosporin (cyclosporine)",
+    "source": "https://www.1mg.com/generics/cyclosporine-211257",
+    "rows": [
+      {
+        "brand": "Panimun Bioral",
+        "company": "Mankind Pharma",
+        "price": "₹179–6302 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Psorid",
+        "company": "Eris Lifesciences",
+        "price": "₹149–4303 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Iminoral",
+        "company": "Emcutix Biopharmaceuticals",
+        "price": "₹127–4230 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Cyclophil ME",
+        "company": "Eris Lifesciences",
+        "price": "₹149–4303 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Arpimune ME",
+        "company": "RPG Life Sciences",
+        "price": "₹126–4050 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Specialist oral therapy: monitor BP, renal function and interactions. Do not substitute ophthalmic ciclosporin or switch formulations without review.",
+    "combo": false
+  },
+  {
+    "id": "biologic",
+    "title": "Biologic anti-TNF agents",
+    "generic": "Adalimumab",
+    "source": "https://www.1mg.com/generics/adalimumab-213407",
+    "rows": [
+      {
+        "brand": "Exemptia",
+        "company": "Zydus Lifesciences",
+        "price": "₹23437–23437 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Adfrar",
+        "company": "Torrent Pharmaceuticals",
+        "price": "₹9843–28307 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Adaly",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹23343–23343 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Envira",
+        "company": "Emcure Pharmaceuticals",
+        "price": "₹21972–21972 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Mabura",
+        "company": "Hetero Drugs",
+        "price": "₹23437–23437 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Five anti-TNF brand options; not representatives of IL-17/IL-23 classes. Confirm dose/device and cold chain. Specialist infection screening; assess heart failure risk.",
+    "combo": false
+  },
+  {
+    "id": "retinoidtop",
+    "title": "Topical retinoids for acne",
+    "generic": "Adapalene 0.1% gel",
+    "source": "https://www.1mg.com/drugs/adaferin-gel-123250",
+    "rows": [
+      {
+        "brand": "Derpalin",
+        "company": "Leeford Healthcare",
+        "price": "₹112.50 per gel pack · listed price",
+        "form": "Adapalene 0.1% gel; source unit is one gel pack, size must be confirmed"
+      },
+      {
+        "brand": "Deriva MS",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹387.19 per gel pack · listed price",
+        "form": "Adapalene 0.1% gel; source unit is one gel pack, size must be confirmed"
+      },
+      {
+        "brand": "Apgel",
+        "company": "Hegde and Hegde Pharmaceutica",
+        "price": "₹182.80 per gel pack · listed price",
+        "form": "Adapalene 0.1% gel; source unit is one gel pack, size must be confirmed"
+      },
+      {
+        "brand": "Adiff",
+        "company": "Ipca Laboratories",
+        "price": "₹204.56 per gel pack · listed price",
+        "form": "Adapalene 0.1% gel; source unit is one gel pack, size must be confirmed"
+      },
+      {
+        "brand": "Adlene",
+        "company": "Talent India",
+        "price": "₹169 per gel pack · listed price",
+        "form": "Adapalene 0.1% gel; source unit is one gel pack, size must be confirmed"
+      }
+    ],
+    "note": "Avoid during pregnancy. Start according to tolerance; use moisturiser and sun protection.",
+    "combo": false
+  },
+  {
+    "id": "bpo",
+    "title": "Benzoyl peroxide preparations",
+    "generic": "Benzoyl peroxide",
+    "source": "https://www.1mg.com/generics/benzoyl-peroxide-209435",
+    "rows": [
+      {
+        "brand": "Brevoxyl",
+        "company": "Torrent Pharmaceuticals",
+        "price": "₹105–143 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Bengel AC",
+        "company": "Hegde and Hegde Pharmaceutica",
+        "price": "₹115–115 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Perobar",
+        "company": "Ajanta Pharma",
+        "price": "₹167–210 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Pernex AC",
+        "company": "Oaknet Healthcare",
+        "price": "₹62–170 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Persol AC",
+        "company": "Wallace Pharmaceuticals",
+        "price": "₹115–225 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Check strength and wash versus leave-on product; may irritate skin and bleach fabric.",
+    "combo": false
+  },
+  {
+    "id": "azelaic",
+    "title": "Dicarboxylic acid preparations",
+    "generic": "Azelaic acid",
+    "source": "https://www.1mg.com/generics/azelaic-acid-211387",
+    "rows": [
+      {
+        "brand": "Aziderm",
+        "company": "Micro Labs",
+        "price": "₹283–650 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Ezanic",
+        "company": "Intas Pharmaceuticals",
+        "price": "₹225–293 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Azac",
+        "company": "Mark (India) Cosmed",
+        "price": "₹121–140 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Zebor",
+        "company": "Hetero Drugs",
+        "price": "₹169–197 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Adac",
+        "company": "Innovative Pharmaceuticals",
+        "price": "₹210–210 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Acne / selected rosacea regimens; formulation and concentration affect tolerability.",
+    "combo": false
+  },
+  {
+    "id": "adabpo",
+    "title": "Retinoid + benzoyl peroxide combinations",
+    "generic": "Adapalene + benzoyl peroxide",
+    "source": "https://www.1mg.com/generics/adapalene-benzoyl-peroxide-400049",
+    "rows": [
+      {
+        "brand": "Epiduo",
+        "company": "Galderma India",
+        "price": "₹1022–1846 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Peroduo",
+        "company": "Ajanta Pharma",
+        "price": "₹481–481 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Oxidoben",
+        "company": "Cipla",
+        "price": "₹351–351 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Persol Plus",
+        "company": "Wallace Pharmaceuticals",
+        "price": "₹489–489 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Zinderm",
+        "company": "Dr Reddy’s Laboratories",
+        "price": "₹282–282 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Avoid pregnancy; verify both ingredient strengths (standard and Forte products differ). Antibiotic-free fixed combination.",
+    "combo": true
+  },
+  {
+    "id": "adaclinda",
+    "title": "Retinoid + topical antibiotic combinations",
+    "generic": "Adapalene + clindamycin",
+    "source": "https://www.1mg.com/generics/adapalene-clindamycin-400050",
+    "rows": [
+      {
+        "brand": "Deriva-CMS",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹435–477 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Adalene",
+        "company": "Zydus Cadila",
+        "price": "₹380–380 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Acnovate",
+        "company": "Apex Laboratories",
+        "price": "₹160–327 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Acnetor AD",
+        "company": "Torrent Pharmaceuticals",
+        "price": "₹423–423 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Acnesol A",
+        "company": "Systopic Laboratories",
+        "price": "₹229–229 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Use concurrent benzoyl peroxide to limit antibiotic resistance; avoid prolonged antibiotic maintenance and avoid retinoids in pregnancy.",
+    "combo": true
+  },
+  {
+    "id": "isotret",
+    "title": "Oral retinoids for acne",
+    "generic": "Isotretinoin",
+    "source": "https://www.1mg.com/generics/isotretinoin-211641",
+    "rows": [
+      {
+        "brand": "Sotret",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹76–356 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Tretiva",
+        "company": "Intas Pharmaceuticals",
+        "price": "₹103–400 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Acutret",
+        "company": "Ipca Laboratories",
+        "price": "₹121–345 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Tretin-Iso",
+        "company": "Hegde and Hegde Pharmaceutica",
+        "price": "₹210–319 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Isotane",
+        "company": "Micro Labs",
+        "price": "₹70–317 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Highly teratogenic: specialist prescription, pregnancy prevention/testing and lipid/liver monitoring. Do not combine with doxycycline/minocycline.",
+    "combo": false
+  },
+  {
+    "id": "spiro",
+    "title": "Antiandrogen therapy",
+    "generic": "Spironolactone",
+    "source": "https://www.1mg.com/generics/spironolactone-210734",
+    "rows": [
+      {
+        "brand": "Aldactone",
+        "company": "RPG Life Sciences",
+        "price": "₹34–289 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Spironot",
+        "company": "Care Formulation Labs",
+        "price": "₹20–41 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Onoctone",
+        "company": "Zeelab Pharmacy",
+        "price": "₹18–18 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Spiroz",
+        "company": "Klintoz Pharmaceuticals",
+        "price": "₹22–62 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Spirix",
+        "company": "Psychocare Health",
+        "price": "₹18–36 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "Selected women with acne, off-label use where applicable. Avoid pregnancy; review potassium, renal function and interacting drugs. Diuretic combinations are not acne substitutes.",
+    "combo": false
+  },
+  {
+    "id": "salicylic",
+    "title": "Keratolytic acne preparations",
+    "generic": "Salicylic acid",
+    "source": "https://www.1mg.com/generics/salicylic-acid-210661",
+    "rows": [
+      {
+        "brand": "Saslic",
+        "company": "Cipla",
+        "price": "₹220–550 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Sebonac",
+        "company": "Tricos Dermatologics",
+        "price": "₹200–340 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Saliac",
+        "company": "Zydus Cadila",
+        "price": "₹221–494 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Saliface",
+        "company": "Apex Laboratories",
+        "price": "₹387–387 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      },
+      {
+        "brand": "Saliderm",
+        "company": "Dermo Care Laboratories",
+        "price": "₹91–121 · listed brand-variant range",
+        "form": "Pack / strength varies; open source before selecting"
+      }
+    ],
+    "note": "These acne/skin-care brand families are not interchangeable with concentrated wart paint. Confirm concentration, formulation and indication.",
+    "combo": false
+  },
+  {
+    "id": "warts",
+    "title": "Wart treatments — immune modifiers and keratolytics",
+    "generic": "Imiquimod / salicylic acid + lactic acid",
+    "source": "https://www.1mg.com/generics/imiquimod-210028",
+    "rows": [
+      {
+        "brand": "Imiquad",
+        "company": "Glenmark Pharmaceuticals",
+        "price": "₹461 · listed variant price",
+        "form": "Imiquimod cream; confirm sachet/pack"
+      },
+      {
+        "brand": "Qmica",
+        "company": "Sun Pharmaceutical Industries",
+        "price": "₹73 · listed variant price",
+        "form": "Imiquimod cream; confirm sachet/pack"
+      },
+      {
+        "brand": "Nilwart",
+        "company": "Dr Reddy’s Laboratories",
+        "price": "₹187 · listed variant price",
+        "form": "Imiquimod cream; confirm sachet/pack"
+      },
+      {
+        "brand": "Iminod",
+        "company": "Einzig Pharmaceutical",
+        "price": "₹253 · listed variant price",
+        "form": "Imiquimod cream; confirm sachet/pack"
+      },
+      {
+        "brand": "Duofilm",
+        "company": "Glaxo SmithKline Pharmaceuticals",
+        "price": "₹225.14 MRP · source shows unavailable",
+        "form": "Salicylic acid + lactic acid solution, 15 ml",
+        "source": "https://www.1mg.com/otc/duofilm-solution-otc166799"
+      }
+    ],
+    "note": "Imiquimod is for selected external genital/perianal warts, not all wart types. Duofilm is for common/plantar warts, not face/genitals; avoid on neuropathic/ischaemic feet without review. Duofilm source: Tata 1mg OTC listing; availability needs confirmation.",
+    "combo": true
+  },
+  {
+    "id": "rosacea",
+    "title": "Topical rosacea options",
+    "generic": "Ivermectin / azelaic acid",
+    "source": "https://www.1mg.com/drugs/iveroz-cream-696693",
+    "combo": false,
+    "note": "For inflammatory rosacea. Ivermectin cream is different from oral ivermectin; do not use ophthalmic brimonidine or nasal oxymetazoline on the face as substitutes. Topical skin treatments do not treat ocular disease.",
+    "rows": [
+      {
+        "brand": "Ivrea 1",
+        "company": "Ajanta Pharma",
+        "price": "₹5.27 per g · listed unit price",
+        "form": "Ivermectin 1% cream; confirm tube size"
+      },
+      {
+        "brand": "Ivernol",
+        "company": "Galcare Pharmaceutical",
+        "price": "₹5.17 per g · listed unit price",
+        "form": "Ivermectin cream; confirm label strength and pack"
+      },
+      {
+        "brand": "Mectiper",
+        "company": "Zydillac Dermaceuticals",
+        "price": "₹4.07 per g · listed unit price",
+        "form": "Ivermectin cream; confirm label strength and pack"
+      },
+      {
+        "brand": "Aziderm",
+        "company": "Micro Labs",
+        "price": "₹283–650 · listed brand-variant range",
+        "form": "Azelaic acid cream/gel; pack and strength vary",
+        "source": "https://www.1mg.com/generics/azelaic-acid-211387"
+      },
+      {
+        "brand": "Ezanic",
+        "company": "Intas Pharmaceuticals",
+        "price": "₹225–293 · listed brand-variant range",
+        "form": "Azelaic acid cream/gel; pack and strength vary",
+        "source": "https://www.1mg.com/generics/azelaic-acid-211387"
+      }
+    ]
+  }
+];
+
+var MEDMAP=[
+['emollient','steroid','calcineurin','antihistamine','cefalexin','mupirocin','cotrim','doxy','clinda','cyclosporin'],
+['steroid','emollient','antihistamine'],['emollient','steroid'],['steroid','antihistamine'],['emollient','steroid','cefalexin'],['emollient','steroid'],['emollient'],['emollient','steroid'],['steroid','calcineurin','shampoo','ciclo','antifungaltop'],
+['steroid','vitd','psorcombo','metho','acit','aprem','cyclosporin','biologic','salicylic'],['steroid','calcineurin'],['steroid','antihistamine'],['mupirocin','cefalexin','clinda'],['mupirocin','cefalexin','clinda'],['mupirocin','cotrim','doxy','clinda'],['antifungaltop','terb','itra','griseo','ciclo'],['antifungaltop','shampoo','fluco'],['antifungaltop','fluco'],['warts'],['retinoidtop','bpo','azelaic','adabpo','adaclinda','doxy','mino','doxycombo','isotret','spiro','salicylic'],['rosacea','azelaic','doxy','mino']];
+function medLink(i){return '<p><button type="button" class="btn p" data-med-condition="'+i+'">Indian brands, prices & companies</button></p>'}
+function medGroups(){var q=(st.mq||'').trim().toLowerCase();return MEDICINES.filter(function(g){return(!st.mc||(MEDMAP[+st.mc-1]||[]).indexOf(g.id)>=0)&&(!st.mcombo||g.combo)&&(!q||JSON.stringify(g).toLowerCase().indexOf(q)>=0)})}
+function medCards(){var groups=medGroups();return '<p class="sub" role="status">'+groups.length+' of '+MEDICINES.length+' groups · '+groups.reduce(function(n,g){return n+g.rows.length},0)+' product listings</p>'+groups.map(function(g){return '<section class="card"><h2>'+esc(g.title)+(g.combo?' <span class="tag">Combination / mixed options</span>':'')+'</h2><p><b>'+esc(g.generic)+'</b></p><p class="sub">'+esc(g.note)+'</p><div class="med-grid">'+g.rows.map(function(r){return '<article class="med-item"><h3>'+esc(r.brand)+'</h3><p>'+esc(r.form)+'</p><p><b>'+esc(r.price)+'</b></p><p class="sub">Company: '+esc(r.company)+'</p><a target="_blank" rel="noopener noreferrer" href="'+esc(r.source||g.source)+'">Source / confirm current product</a></article>'}).join('')+'</div></section>'}).join('')+(groups.length?'':'<p>No matching medicines. Clear filters or try a generic, brand, class or company.</p>')}
+function medicines(){return '<h2>Indian medicines</h2><p class="sub">Reviewed 1 November 2026 · 5 listings per group. Indian-market examples, not a sales-popularity ranking or endorsements.</p><div class="card"><b>How to read prices and companies</b><p>Prices are in INR. A <b>brand-variant range</b> spans different packs, strengths and sometimes routes: it is not a quoted price for one specific pack, a per-tablet cost, or a course cost. Exact pack and unit prices are identified separately. Listings are a dated reference, not a live stock feed; prices vary by batch, retailer and location.</p><p>Companies are the source-listed marketers unless a manufacturer is explicitly named. Confirm the actual manufacturer and current MRP on the dispensed pack. Similar brand names and suffixes can contain different ingredients.</p></div><label for="mq">Search generic, brand, class or company</label><input id="mq" type="search" value="'+esc(st.mq||'')+'" placeholder="e.g. Glenmark, antifungal, Epiduo, combination"><label for="mc">Condition</label><select id="mc"><option value="">All conditions</option>'+C.map(function(c,i){return '<option value="'+(i+1)+'"'+(st.mc==String(i+1)?' selected':'')+'>'+esc(c.n)+'</option>'}).join('')+'</select><label class="med-check"><input id="mcombo" type="checkbox"'+(st.mcombo?' checked':'')+'> Combination / mixed treatment groups only</label><button type="button" class="btn" id="mclear">Clear filters</button><div id="med-results">'+medCards()+'</div><details class="card"><summary>Scope and verification gaps</summary><p>The catalogue covers the principal treatment classes across all 21 conditions. It does not establish that every molecule named in the chapter has five currently available Indian brands. Five verified options were not established for crisaborole, dupilumab, IL-17/IL-23 biologics, tazarotene, anthralin, coal tar, oral dicloxacillin, nystatin, selenium sulphide, podophyllin, sinecatechins, topical sulfacetamide/metronidazole, facial brimonidine/oxymetazoline, or hormonal contraceptives. These require product-specific verification; foreign brands or eye/nose preparations have not been inserted as Indian skin-treatment substitutes.</p></details><details class="card"><summary>Clinical use and combination notes</summary><p>Market availability does not establish suitability. Do not use steroid-antifungal mixtures for ringworm. Acne antibiotics should be paired with benzoyl peroxide and reviewed for limited duration. Oral retinoids and immunosuppressants need specialist supervision. Combination groups include doxycycline/probiotic, co-trimoxazole, ketoconazole/zinc pyrithione, calcipotriol/clobetasol and acne retinoid combinations.</p><p><a href="https://www.aad.org/member/clinical-quality/guidelines/acne" target="_blank" rel="noopener noreferrer">AAD acne guideline</a> · <a href="https://www.cdc.gov/ringworm/treatment/index.html" target="_blank" rel="noopener noreferrer">CDC ringworm guidance</a></p></details>'}
+var originalDetail=detail;
+detail=function(i){return originalDetail(i).replace('<h3>Treatment</h3>','<h3>Treatment</h3>'+medLink(i))};
+var originalDraw=draw;
+draw=function(){if(st.tab!=='med'||st.sel!==null){originalDraw();var link=document.querySelector('[data-med-condition]');if(link)link.onclick=function(){st.mc=String(+link.dataset.medCondition+1);st.mq='';st.mcombo=false;st.tab='med';st.sel=null;draw();scrollTo(0,0)};return}tabs();document.getElementById('v').innerHTML=medicines();function refresh(){document.getElementById('med-results').innerHTML=medCards()}document.getElementById('mq').oninput=function(){st.mq=this.value;refresh()};document.getElementById('mc').onchange=function(){st.mc=this.value;refresh()};document.getElementById('mcombo').onchange=function(){st.mcombo=this.checked;refresh()};document.getElementById('mclear').onclick=function(){st.mq='';st.mc='';st.mcombo=false;draw()}};
+TB.splice(2,0,['med','Indian medicines']);
+
 draw();
 </script></body></html>
+
